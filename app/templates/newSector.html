@@ -1,0 +1,45 @@
+<form id="form" role="form" class="col-md-3 col-md-offset-0 form-inline thumbnail">
+		
+			<div class="form-group halfWidth">
+				<label class="sr-only" for="lat">Latitud</label>
+				<div class="input-group">
+					<span class="input-group-addon">Lat</span>
+					<input type="text" class="form-control" id="lat" ng-model="lat" disabled>
+				</div>
+			</div>
+
+			<div class="form-group halfWidth">
+				<label class="sr-only" for="lng">Longitud</label>
+				<div class="input-group">
+					<span class="input-group-addon">Lng</span>
+					<input type="text" class="form-control" id="lng" ng-model="lng" disabled>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="name" class="control-label sr-only">Nombre del sector</label>
+				<input name="name" id="name" class="form-control" ng-model="name" placeholder="Nombre del sector...">
+			</div>
+
+			<div class="form-group">
+				<label for="name" class="control-label sr-only">Información del sector</label>
+				<textarea name="info" class="form-control" rows="10" ng-model="info" placeholder="Información del sector..."></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="orientacion" class="control-label sr-only">Orientación</label>
+				<select class="form-control">
+					<option disabled selected>Orientación...</option>
+					<option>Norte</option>
+					<option>Este</option>
+					<option>Sur</option>
+					<option>Oeste</option>
+					<option>Noroeste</option>
+					<option>Noreste</option>
+					<option>Sudoeste</option>
+					<option>Sudeste</option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Agregar</button>
+		</form>
