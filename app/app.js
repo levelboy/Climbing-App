@@ -1,32 +1,31 @@
+'use strict';
+
 var climbingApp = angular.module('climbingApp', ['ngRoute'], function( $routeProvider ){
+
+	
 	$routeProvider.when('/', {
 		controller: 'ctrl'
 	});
 
+	
 	$routeProvider.when ('/newSector', {
 		templateUrl: 'app/templates/newSector.html',
 		controller: 'addSector'
 	});
+
 });
 
 
-//Agregar marcadores
-climbingApp.factory('markerSector', function($scope){
-	google.maps.event.addListener(map, 'click', function(e) {
-		var marker = new google.maps.Marker({
-				position: e.latLng,
-				map: map
-			});
-	});
-});
-
-
-function ctrl ($scope) {
+function Main ($scope) {
+    
     $scope.initLocation = {
         lat: -54.798112,
         lng: -68.303375
     };
-    $scope.markers = [
+
+    $scope.markers = [];
+
+    $scope.sectors = [
 	    {
 	    	'title': 'gato',
 	    	'location': {
@@ -44,9 +43,12 @@ function ctrl ($scope) {
     ];
 }
 
+function addSector( $scope, Markers ) {
+	//New added marker
+	$scope.marker;
 
-function addSector($scope) {
+	Markers.addClickListener($scope.marker, function(e){
+    	$scope.lat = e.latLng.lat();
+    	$scope.lng = e.latLng.lng();
+    });
 }
-
-//Injecta la posibilidad de agregar markadores
-addSector.$inject = ['$scope', 'markerSector'];

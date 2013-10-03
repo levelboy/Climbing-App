@@ -1,17 +1,12 @@
 'use strict';
 
-climbingApp.directive('gmap', function() {
-        return {
-            restrict: 'E',
-            replace: true,
-            template: '<div id="map-canvas"></div>',
-            link: function(scope, iElement, attrs) {
-                gInit(scope);
-            }
-        }
+climbingApp.directive('gmap', ['$location', function( $location ) {
+        
+
 		function gInit (scope) {
 			var lat = scope.initLocation.lat;
 			var lng = scope.initLocation.lng;
+			var sectors = scope.sectors;
 			var markers = scope.markers;
 
 			var Location = new google.maps.LatLng(lat, lng),
@@ -23,24 +18,39 @@ climbingApp.directive('gmap', function() {
 			}
 			
 			//instance map
-			window.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+			var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 			
-			//Set markers
-			for ( var i = 0; i < markers.length; i++ ) {
-				var posMarker = new google.maps.LatLng( markers[i].location.lat, markers[i].location.lng );
-				var title = markers[i].title;
-				console.log( "marcador: " + posMarker);
+			//Set sector's markers
+			for ( var i = 0; i < sectors.length; i++ ) {
+				var posMarker = new google.maps.LatLng( sectors[i].location.lat, sectors[i].location.lng );
+				var title = sectors[i].title;
 
-				addMarker( posMarker, title, map );
+				addMarker( posMarker, title );
 			}
+
+
+
+			//This is a closure: has access to gInit scope and the global scope
+			function addMarker ( location, title ) {
+				markers.push( new google.maps.Marker({
+						position: location,
+						title: title,
+						map: map
+					})
+				);
+			}
+
+			return map;
 		}
 
-		function addMarker ( location, title, map) {
-			var marker = new google.maps.Marker({
-				position: location,
-				title: title,
-				map: map
-			});
-		}
-	});
+		return {
+            restrict: 'E',
+            replace: true,
+            template: '<div id="map-canvas"></div>',
+            link: function(scope, iElement, attrs) {
+                window.map = gInit(scope);
+            }
+        }
+	}
+]);
 		
