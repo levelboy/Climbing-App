@@ -41,13 +41,12 @@ function Main ($scope) {
 	    	}
 	    }
     ];
+
 }
 
 function addSector( $scope, Markers ) {
-	//New added marker
-	$scope.marker;
 
-	Markers.addClickListener($scope.marker, function(e){
+	Markers.addClickListener( $scope.markers, function(e){
     	$scope.lat = e.latLng.lat();
     	$scope.lng = e.latLng.lng();
     });
