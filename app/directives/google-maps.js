@@ -1,9 +1,10 @@
 'use strict';
 
-climbingApp.directive('gmap', ['$location', function( $location ) {
+climbingApp.directive('gmap', [ function( ) {
         
 
-		function gInit (scope) {
+		function gInit ( scope ) {
+			
 			var lat = -54.798112;
 		    var lng = -68.303375;
 
@@ -21,6 +22,17 @@ climbingApp.directive('gmap', ['$location', function( $location ) {
 			//instance map
 			var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 			
+			
+			//addlistener
+			google.maps.event.addListener(map, 'click', function(e){
+				if ( scope.addNewMarker ) {
+					console.log('exist!');
+				} else {
+					console.log('doesnt :/');
+				}
+			})
+
+
 			//Set sector's markers
 			if ( sectors ){
 				for ( var i = 0; i < sectors.length; i++ ) {
@@ -30,7 +42,6 @@ climbingApp.directive('gmap', ['$location', function( $location ) {
 					addMarker( posMarker, title );
 				}
 			}
-
 
 
 			//This is a closure: has access to gInit scope and the global scope

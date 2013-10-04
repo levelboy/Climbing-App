@@ -1,29 +1,30 @@
-'use strict';
+(function() {
+	'use strict';
 
-var climbingApp = angular.module('climbingApp', []);
+	window.climbingApp = window.climbingApp || {};
 
+	climbingApp = angular.module('climbingApp', [
+		'ngRoute',
+		'controllers'
+	]);
 
-function Main ($scope) {
-    
-    $scope.sectors = [
-	    {
-	    	'title': 'gato',
-	    	'location': {
-	    		'lat' : -54.798200,
-	    		'lng' : -68.303375,
-	    	}
-	    },
-	    {
-	    	'title': 'prueba2',
-	    	'location': {
-	    		'lat' : -54.798200,
-	    		'lng' : -68.50000,
-	    	}
-	    }
-    ];
+	climbingApp.controllers = angular.module('controllers', []);
 
-}
+	climbingApp.config(
+		function( $routeProvider ){
+			$routeProvider.
 
-function addSector( $scope ) {
+			when('/', {
 
-}
+			}).
+
+			when('/newSector', {
+				templateUrl: 'app/templates/newSector.html',
+				controller: 'addSector',
+			}).
+
+			otherwise({ redirectTo: '/'});
+		}
+	);
+
+})();
