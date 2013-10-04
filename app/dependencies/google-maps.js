@@ -4,10 +4,11 @@ climbingApp.directive('gmap', ['$location', function( $location ) {
         
 
 		function gInit (scope) {
-			var lat = scope.initLocation.lat;
-			var lng = scope.initLocation.lng;
+			var lat = -54.798112;
+		    var lng = -68.303375;
+
 			var sectors = scope.sectors;
-			var markers = scope.markers;
+			var markers = []
 
 			var Location = new google.maps.LatLng(lat, lng),
 			mapOptions = {
@@ -21,11 +22,13 @@ climbingApp.directive('gmap', ['$location', function( $location ) {
 			var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 			
 			//Set sector's markers
-			for ( var i = 0; i < sectors.length; i++ ) {
-				var posMarker = new google.maps.LatLng( sectors[i].location.lat, sectors[i].location.lng );
-				var title = sectors[i].title;
+			if ( sectors ){
+				for ( var i = 0; i < sectors.length; i++ ) {
+					var posMarker = new google.maps.LatLng( sectors[i].location.lat, sectors[i].location.lng );
+					var title = sectors[i].title;
 
-				addMarker( posMarker, title );
+					addMarker( posMarker, title );
+				}
 			}
 
 

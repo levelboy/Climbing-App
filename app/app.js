@@ -1,30 +1,10 @@
 'use strict';
 
-var climbingApp = angular.module('climbingApp', ['ngRoute'], function( $routeProvider ){
-
-	
-	$routeProvider.when('/', {
-		controller: 'ctrl'
-	});
-
-	
-	$routeProvider.when ('/newSector', {
-		templateUrl: 'app/templates/newSector.html',
-		controller: 'addSector'
-	});
-
-});
+var climbingApp = angular.module('climbingApp', []);
 
 
 function Main ($scope) {
     
-    $scope.initLocation = {
-        lat: -54.798112,
-        lng: -68.303375
-    };
-
-    $scope.markers = [];
-
     $scope.sectors = [
 	    {
 	    	'title': 'gato',
@@ -44,10 +24,6 @@ function Main ($scope) {
 
 }
 
-function addSector( $scope, Markers ) {
+function addSector( $scope ) {
 
-	Markers.addClickListener( $scope.markers, function(e){
-    	$scope.lat = e.latLng.lat();
-    	$scope.lng = e.latLng.lng();
-    });
 }

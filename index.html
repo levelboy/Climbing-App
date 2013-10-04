@@ -1,6 +1,6 @@
 <html ng-app="climbingApp">
 <head>
-	<title>Carga un nuevo sector.</title>
+	<title>Ushuaia Climbing</title>
 
 	<meta charset="utf-8">
 	<meta name="description" content="Tierra del Fuego Climbing Guide">  
@@ -16,6 +16,8 @@
 	</style>
 </head>	 	
 <body ng-controller="Main">
+  
+
   	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -30,14 +32,12 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Guia</a></li>
-				<li><a href="#/newSector">Nuevo sector</a></li>
+				<li><a href="newSector.html">Nuevo sector</a></li>
 			</ul>
 		</div>
   	</div>
 
   	<gmap></gmap>
-
-  	<div ng-view></div>
 
 </body>
 </html>
@@ -47,6 +47,5 @@
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
 	
 	<script src="app/app.js"></script>
-	<script src="app/dependencies/listener-service.js"></script>
 	<script src="app/dependencies/google-maps.js"></script>
 
